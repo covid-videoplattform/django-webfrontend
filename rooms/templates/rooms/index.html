@@ -1,3 +1,6 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
 {% if latest_appointments_list %}
     <ul>
     {% for appointment in latest_appointments_list %}
@@ -7,3 +10,4 @@
 {% else %}
     <p>No appointments yet. <a href="{% url 'rooms:new' %}">create one</a></p>
 {% endif %}
+{% endblock %}

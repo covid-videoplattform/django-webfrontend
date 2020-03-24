@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+  </head>
+  <body>
+    <section id=nav>
+      <h1><a href="/">Title</a></h1>
+      <ul>
+          <li><a href="/">MenuItem</a></li>
+      </ul>
+    </section>
+
+    <section id="main">
+        {% block content %}
+        {% endblock %}
+    </section>
+
+    <section id="footer">
+      <ul>
+        <li><a href="/">FooterMenuItem</a></li>
+      </ul>
+
+      </section>
+    </body>
+</html>

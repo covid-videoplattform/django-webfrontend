@@ -1,3 +1,6 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
 <h1>{{ appointment.name }}</h1>
 
 <p>{{ appointment.staffmember.name }}</p>
@@ -13,3 +16,4 @@
 {% endif %}
 
 <a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="button primary">join room</a>
+{% endblock %}
