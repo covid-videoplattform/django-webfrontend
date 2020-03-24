@@ -5,5 +5,5 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No appointments yet. <a href="/rooms/new">create one</a></p>
+    <p>No appointments yet. <a href="{% url 'rooms:new' %}">create one</a></p>
 {% endif %}
