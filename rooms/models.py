@@ -31,3 +31,6 @@ class Appointment(models.Model):
                     "end_time should be after start_time"
                 )
         return cleaned_data
+
+    def is_permanent(self):
+        return True if self.start_time is None else False
