@@ -20,3 +20,26 @@ class AppointmentModelTests(TestCase):
                         end_time=timezone.now())
         with self.assertRaises(ValidationError):
             a.full_clean()
+
+    def test_autogenerate_room_name_when_empty(self):
+        """
+        Appointments without a room name get a random room name on save
+        """
+        a = Appointment(name="testappointment",
+                        start_time=timezone.now(),
+                        end_time=timezone.now() + datetime.timedelta(minutes=30))
+        a.full_clean()
+        a.save()
+        self.assertIsNot(a.room_name, None)
+
+    def test_leave_room_name_when_submitted(self):
+        """
+        Appointments with a room name set should not get it overwritten
+        """
+        a = Appointment(name="testappointment",
+                        start_time=timezone.now(),
+                        end_time=timezone.now() + datetime.timedelta(minutes=30),
+                        room_name="my test room")
+        a.full_clean()
+        a.save()
+        self.assertIs(a.room_name, "my test room")
