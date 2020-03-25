@@ -1,6 +1,7 @@
 import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 
 # health care worker who is available for appointments
@@ -44,3 +45,6 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('rooms:appointment-detail', kwargs={'pk': self.pk})

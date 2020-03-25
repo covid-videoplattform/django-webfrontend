@@ -1,14 +1,14 @@
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django.views import generic
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
+
 
 from .models import Appointment, StaffMember
 
 
-# Create your views here.
-
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'rooms/index.html'
     context_object_name = 'latest_appointments_list'
 
@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
         return response
 
 
-class DetailView(generic.DetailView):
+class DetailView(DetailView):
     model = Appointment
     template_name = 'rooms/detail.html'
 
@@ -41,7 +41,7 @@ class DetailView(generic.DetailView):
         return response
 
 
-class PrintPDFView(generic.DetailView):
+class PrintPDFView(DetailView):
     model = Appointment
     template_name = 'rooms/print.html'
 
@@ -51,8 +51,7 @@ class PrintPDFView(generic.DetailView):
         return context
 
 
-def new(request):
-    return render(
-        request, 'rooms/new.html',
-        {'staffmembers': [{'id': m.id, 'name': m.name}
-                          for m in StaffMember.objects.all()]})
+class AppointmentCreate(CreateView):
+    model = Appointment
+    fields = ['name', 'description', 'start_time', 'end_time', 'staffmember',
+              'room_name']
