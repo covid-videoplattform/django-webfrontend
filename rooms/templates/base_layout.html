@@ -19,19 +19,17 @@
     {% endcompress %}
   </head>
   <body>
-    <section id=nav>
-      <h1><a href="/">Title</a></h1>
-      <ul>
-          <li><a href="/">MenuItem</a></li>
-      </ul>
+    <section id=nav class="ui stackable container menu">
+      <div class="item">COVID Videoplattform</div>
+      <a class="item" href="/">MenuItem</a>
     </section>
-
-    <section id="main">
+    <h1 class="ui center aligned header"><a href="/">Title</a></h1>
+    <section id="main" class="ui container">
         {% block content %}
         {% endblock %}
     </section>
 
-    <section id="footer">
+    <section id="footer" class="ui inverted vertical footer segment">
       <ul>
         <li><a href="/">FooterMenuItem</a></li>
       </ul>

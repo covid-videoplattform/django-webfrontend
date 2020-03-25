@@ -2,11 +2,26 @@
 
 {% block content %}
 {% if latest_appointments_list %}
-    <ul>
+    <table class="ui celled table">
+    	<thead>
+    		<tr>
+    			<th>id</th>
+    			<th>name</th>
+    			<th>description</th>
+    			<th colspan=3>actions</th>
+    		</tr>
+    	</thead>
     {% for appointment in latest_appointments_list %}
-        <li><a href="{% url 'rooms:appointment-detail' appointment.id %}">{{appointment.id}} &ndash; {{ appointment.name }}</a></li>
+        <tr>
+        	<td><a href="{% url 'rooms:appointment-detail' appointment.id %}">{{appointment.id}}</a></td>
+        	<td>{{ appointment.name }}</a></td>
+        	<td>{{ appointment.description }}</td>
+        	<td></td>
+        	<td></td>
+        	<td></td>
+        </tr>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>No appointments yet. <a href="{% url 'rooms:new' %}">create one</a></p>
 {% endif %}
