@@ -1,3 +1,4 @@
+{% load compress %}
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
@@ -6,7 +7,16 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <link rel="stylesheet" href="{{ STATIC_URL}}styles.css" />
+    {% compress css %}
+    <link type="text/less" rel="stylesheet" href="/static/less/styles.less" charset="utf-8">
+    <style type="text/less">
+    @font-size: 11pt;
+
+    body {
+      font-size: @font-size;
+    }
+    </style>
+    {% endcompress %}
   </head>
   <body>
     <section id=nav>

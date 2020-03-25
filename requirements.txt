@@ -1,1 +1,2 @@
 Django>=3.0.4
+django-compressor>=2.4
