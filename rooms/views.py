@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db.models import Count
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView
 
@@ -28,7 +29,7 @@ class AppointmentIndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['activate'] = 'appointments'
-        context['page_title'] = 'Lits of Appointments'
+        context['page_title'] = _('List of Appointments')
         return context
 
 
@@ -92,7 +93,7 @@ class StaffIndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['activate'] = 'staff'
-        context['page_title'] = 'Lits of Staff Members'
+        context['page_title'] = _('List of Staff Members')
         return context
 
 

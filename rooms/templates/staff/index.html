@@ -1,15 +1,16 @@
 {% extends 'base_layout.html' %}
+{% load i18n %}
 
 {% block content %}
 {% if latest_staff_members_list %}
     <table class="ui very basic striped table">
     	<thead>
     		<tr>
-    			<th>id</th>
-    			<th>name</th>
-    			<th>email</th>
-                <th>phone</th>
-    			<th>appointments</th>
+    			<th>{% trans 'id' %}</th>
+    			<th>{% trans 'name' %}</th>
+    			<th>{% trans 'email' %}</th>
+                <th>{% trans 'phone' %}</th>
+    			<th>{% trans 'appointments' %}</th>
     		</tr>
     	</thead>
     {% for staffmember in latest_staff_members_list %}
