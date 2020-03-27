@@ -1,4 +1,5 @@
 covid_videoplattform/settings_local.py
+static/CACHE/
 
 # Created by https://www.gitignore.io
 
