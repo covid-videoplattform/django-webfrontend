@@ -12,8 +12,12 @@ urlpatterns = [
          name='appointment-detail'),
     # ex: /appointments/5/print/
     path('appointments/<int:pk>/print/',
-         views.AppointmentPrintPDFView.as_view(),
-         name='appointment-print_pdf'),
+         views.AppointmentPrintView.as_view(),
+         name='appointment-print'),
+    # ex: /appointments/5/delete/
+    path('appointments/<int:pk>/delete/',
+         views.AppointmentDelete.as_view(),
+         name='appointment-delete'),
     # ex: /appointments/new/
     path('appointments/new/', views.AppointmentCreate.as_view(),
          name='appointment-new'),
@@ -24,8 +28,12 @@ urlpatterns = [
     path('staff/<int:pk>/', views.StaffDetailView.as_view(),
          name='staff-detail'),
     # ex: /staff/5/print/
-    path('staff/<int:pk>/print/', views.StaffPrintPDFView.as_view(),
-         name='staff-print_pdf'),
+    path('staff/<int:pk>/print/', views.StaffPrintView.as_view(),
+         name='staff-print'),
+     # ex: /staff/5/delete/
+    path('staff/<int:pk>/delete/',
+         views.StaffMemberDelete.as_view(),
+         name='staff-delete'),
     # ex: /staff/new/
     path('staff/new/', views.StaffCreate.as_view(),
          name='staff-new'),

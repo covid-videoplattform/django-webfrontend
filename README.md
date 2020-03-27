@@ -1,6 +1,6 @@
 # COVID Videoplatform Django Frontend
 
-This is an appointment management system for jitsi.
+This is an appointment management system for jitsi-meet video calls.
 
 It allows you to maintain a list of staff members which can be assigned appointments by date and time.
 

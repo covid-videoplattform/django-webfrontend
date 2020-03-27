@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('rooms.urls')),
     path('admin/', admin.site.urls),
+    path('p/', include('django.contrib.flatpages.urls')),
 ]

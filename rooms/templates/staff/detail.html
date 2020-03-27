@@ -1,11 +1,51 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-<h1>{{ staff_member.name }}</h1>
+<h1>{{ staffmember.name }}</h1>
 
-<p>{{ staff_member.email }}</p>
+{% if staffmember.email %}
+<a href="mailto:{{ staffmember.email }}" class="ui label">
+<i class="mail icon"></i>
+{{ staffmember.email }}
+</a>
+{% endif %}
 
-TODO: Table with all appointments
+{% if staffmember.email %}
+<a href="tel:{{ staffmember.phone }}" class="ui label">
+<i class="phone icon"></i>
+{{ staffmember.phone }}
+</a>
+{% endif %}
+
+<table class="ui very basic striped table">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in staffmember.appointment_set.all %}
+        <tr>
+            <td>
+                <a href="{% url 'rooms:appointment-detail' a.id %}">
+                {{ a.name }}</a>
+            </td>
+            <td>{{ a.description }}</td>
+            <td>
+                <a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="ui labeled icon button primary">
+                    <i class="video icon"></i>join room</a>
+                <a class="ui small red icon button" href="{% url 'rooms:appointment-delete' a.id %}">
+                    <i class="trash icon"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<a class="ui labeled icon button" target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}">
+                    <i class="print icon"></i>print this list</a>
 
 
 {% endblock %}

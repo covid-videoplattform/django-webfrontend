@@ -1,10 +1,39 @@
 {% extends 'print_layout.html' %}
 
 {% block content %}
-<h1>{{ staff_member.name }}</h1>
+<h1>{{ staffmember.name }}</h1>
 
-<p>{{ staff_member.email }}</p>
+{% if staffmember.email %}
+<a href="mailto:{{ staffmember.email }}" class="ui large label">
+<i class="mail icon"></i>
+{{ staffmember.email }}
+</a>
+{% endif %}
 
+{% if staffmember.email %}
+<a href="tel:{{ staffmember.phone }}" class="ui large label">
+<i class="phone icon"></i>
+{{ staffmember.phone }}
+</a>
+{% endif %}
 
-<p>TODO: Table with all appointments</p>
+<table class="ui very basic striped table">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in staffmember.appointment_set.all %}
+        <tr>
+            <td>{{ a.name }}</td>
+            <td>{{ a.description }}</td>
+            <td>{{ jitsi_base_url }}{{ appointment.room_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
 {% endblock %}

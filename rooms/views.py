@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.db.models import Count
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView
 
 
+from .forms import AppointmentForm, StaffMemberForm
 from .models import Appointment, StaffMember
 
 
@@ -47,7 +49,7 @@ class AppointmentDetailView(DetailView):
         return response
 
 
-class AppointmentPrintPDFView(DetailView):
+class AppointmentPrintView(DetailView):
     model = Appointment
     template_name = 'appointments/print.html'
 
@@ -59,9 +61,16 @@ class AppointmentPrintPDFView(DetailView):
 
 class AppointmentCreate(CreateView):
     model = Appointment
+    form = AppointmentForm()
     template_name = 'appointments/appointment_form.html'
     fields = ['name', 'description', 'start_time', 'end_time', 'staffmember',
               'room_name']
+
+
+class AppointmentDelete(DeleteView):
+    model = Appointment
+    template_name = 'appointments/appointment_confirm_delete.html'
+    success_url = reverse_lazy('rooms:appointment-index')
 
 
 class StaffIndexView(ListView):
@@ -104,8 +113,8 @@ class StaffDetailView(DetailView):
         return response
 
 
-class StaffPrintPDFView(DetailView):
-    model = Appointment
+class StaffPrintView(DetailView):
+    model = StaffMember
     template_name = 'staff/print.html'
 
     def get_context_data(self, **kwargs):
@@ -123,5 +132,12 @@ class StaffPrintPDFView(DetailView):
 
 class StaffCreate(CreateView):
     model = StaffMember
-    template_name = 'staff/staff_member_form.html'
-    fields = ['name', 'email']
+    form = StaffMemberForm()
+    template_name = 'staff/staffmember_form.html'
+    fields = ['name', 'email', 'phone']
+
+
+class StaffMemberDelete(DeleteView):
+    model = StaffMember
+    template_name = 'staff/staffmember_confirm_delete.html'
+    success_url = reverse_lazy('rooms:staff-index')
