@@ -14,16 +14,15 @@
   <body>
     <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
       <div class="item">COVID Videoplattform</div>
-      <a class="item {% if activate == 'staff' %}active{% endif %}" href="{% url 'rooms:staff-index' %}">Staff</a>
-      <a class="item {% if activate == 'appointments' %}active{% endif %}" href="{% url 'rooms:appointment-index' %}">Appointments</a>
+      <a class="item" href="{% url 'rooms:staff-index' %}">Staff</a>
+      <a class="item" href="{% url 'rooms:appointment-index' %}">Appointments</a>
     </section>
    
 
     <section id="main" class="ui vertical basic segment">
-      <div class="ui container">
-        <h1 class="ui header">{% if page_title %}{{ page_title }}{% endif %}</h1>
-        {% block content %}
-        {% endblock %}
+      <div class="ui text container">
+        <h1 class="ui dividing header">{{ flatpage.title }}</h1>
+        {{ flatpage.content }}
       </div>
     </section>
 
@@ -32,9 +31,9 @@
       <div class="ui container">
         <div class="ui secondary inverted menu">
           <div class="right menu">
-            <a class="item" href="/about/">about</a>
-            <a class="item" href="/privacy/">privacy</a>
-            <a class="item" href="/imprint/">imprint</a>
+            <a class="item {% if flatpage.url == '/about/' %}active{% endif %}" href="/about/">about</a>
+            <a class="item {% if flatpage.url == '/privacy/' %}active{% endif %}" href="/privacy/">privacy</a>
+            <a class="item {% if flatpage.url == '/imprint/' %}active{% endif %}" href="/imprint/">imprint</a>
           </div>
         </ul>
       </div>

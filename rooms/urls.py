@@ -30,7 +30,7 @@ urlpatterns = [
     # ex: /staff/5/print/
     path('staff/<int:pk>/print/', views.StaffPrintView.as_view(),
          name='staff-print'),
-     # ex: /staff/5/delete/
+    # ex: /staff/5/delete/
     path('staff/<int:pk>/delete/',
          views.StaffMemberDelete.as_view(),
          name='staff-delete'),

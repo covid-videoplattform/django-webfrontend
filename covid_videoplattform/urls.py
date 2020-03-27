@@ -1,4 +1,4 @@
-"""covid_videoplattform URL Configuration
+"""covid_videoplattform URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from django.contrib.flatpages import views
 
 urlpatterns = [
     path('', include('rooms.urls')),
     path('admin/', admin.site.urls),
     path('p/', include('django.contrib.flatpages.urls')),
+    re_path(r'^(?P<url>.*/)$', views.flatpage),
 ]

@@ -16,7 +16,7 @@ The system assumes you have your own jitsi-meet instance set up. You can in theo
 1. install python 3 and django 3
 
 
-2. install the less css compiler: 
+2. install the less css compiler (>= 3.11): 
 ```
 npm install -g less
 ```
