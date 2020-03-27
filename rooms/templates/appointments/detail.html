@@ -1,0 +1,21 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<h1>{{ appointment.name }}</h1>
+
+<p>{{ appointment.staffmember.name }}</p>
+
+<p>{{ appointment.description }}</p>
+
+{% if appointment.end_time %}
+<p>from {{ appointment.start_time }}</p>
+{% endif %}
+
+{% if appointment.end_time %}
+	<p>till {{ appointment.end_time}}</p>
+{% endif %}
+
+<a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="ui labeled icon button primary">
+<i class="video icon"></i>
+join room</a>
+{% endblock %}

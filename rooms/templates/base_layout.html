@@ -1,0 +1,43 @@
+{% load compress %}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    {% compress css %}
+    <link type="text/less" rel="stylesheet" href="/static/styles.less" charset="utf-8">
+    {% endcompress %}
+  </head>
+  <body>
+    <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
+      <div class="item">COVID Videoplattform</div>
+      <a class="item {% if activate == 'staff' %}active{% endif %}" href="{% url 'rooms:staff-index' %}">Staff</a>
+      <a class="item {% if activate == 'appointments' %}active{% endif %}" href="{% url 'rooms:appointment-index' %}">Appointments</a>
+    </section>
+   
+
+    <section id="main" class="ui vertical basic segment">
+      <div class="ui container">
+        <h1 class="ui header">{% if page_title %}{{ page_title }}{% endif %}</h1>
+        {% block content %}
+        {% endblock %}
+      </div>
+    </section>
+
+
+    <section id="footer" class="ui inverted vertical footer segment">
+      <div class="ui container">
+        <div class="ui secondary inverted menu">
+          <div class="right menu">
+            <a class="item" href="/imprint">imprint</a>
+            <a class="item" href="/privacy">privacy</a>
+          </div>
+        </ul>
+      </div>
+
+      </section>
+    </body>
+</html>

@@ -1,11 +1,17 @@
+import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 
 # health care worker who is available for appointments
 class StaffMember(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(null=True, blank=True)
+    last_modified = models.DateTimeField(auto_now=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 # represents the connection between a staffmember, a time and a videochatroom
@@ -24,6 +30,9 @@ class Appointment(models.Model):
     def clean(self, *args, **kwargs):
         cleaned_data = super(Appointment, self).save(*args, **kwargs)
 
+        if getattr(self, 'room_name') is None:
+            self.room_name = uuid.uuid4().hex[:6].upper()
+
         if self.start_time and self.end_time:
             # Only do something if both fields are valid so far.
             if self.end_time <= self.start_time:
@@ -34,3 +43,9 @@ class Appointment(models.Model):
 
     def is_permanent(self):
         return True if self.start_time is None else False
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('rooms:appointment-detail', kwargs={'pk': self.pk})
