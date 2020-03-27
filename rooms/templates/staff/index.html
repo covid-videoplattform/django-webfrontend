@@ -2,22 +2,24 @@
 
 {% block content %}
 {% if latest_staff_members_list %}
-    <table class="ui celled table">
+    <table class="ui very basic striped table">
     	<thead>
     		<tr>
     			<th>id</th>
     			<th>name</th>
     			<th>email</th>
+                <th>phone</th>
     			<th>appointments</th>
     		</tr>
     	</thead>
-    {% for staff_member in latest_staff_members_list %}
+    {% for staffmember in latest_staff_members_list %}
         <tr>
-        	<td><a href="{% url 'rooms:staff-detail' staff_member.id %}">{{staff_member.id}}</a></td>
-        	<td>{{ staff_member.name }}</a></td>
-        	<td>{{ staff_member.email }}</td>
-        	<td>{{ staff_member.appointment__count }} 
-                <a class="ui labeled icon button" href="#"><i class="print icon"></i>print</a>
+        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{staffmember.id}}</a></td>
+        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{ staff_member.name }}</a></td>
+        	<td>{{ staffmember.email }}</td>
+            <td>{{ staffmember.phone }}</td>
+        	<td>{{ staffmember.appointment__count }} 
+                <a class="ui labeled icon button"  target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}"><i class="print icon"></i>print</a>
             </td>
         </tr>
     {% endfor %}

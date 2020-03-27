@@ -2,12 +2,15 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # health care worker who is available for appointments
 class StaffMember(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(null=True, blank=True)
+    name = models.CharField(max_length=255, help_text='Full name')
+    email = models.EmailField(null=True, blank=True,
+                              help_text='Contact email address')
+    phone = PhoneNumberField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):

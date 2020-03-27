@@ -3,20 +3,19 @@
 {% block content %}
 <div class="ui text container">
     <div class="ui raised segments">
-    <h1 class="ui top attached header">New Appointment</h1>
-
+    <h1 class="ui top attached header">New Staff Member</h1>
     {% if error_message %}
     <div class="ui attached segment">
     <p><strong>{{ error_message }}</strong></p>
     </div>
-    {% endif %} 
+    {% endif %}
 
     <form method="post" class="ui form">{% csrf_token %}
         <div class="ui attached segment">
         {{ form.as_p }}
         </div>
         <div class="ui bottom attached clearing segment">
-        <input type="submit" value="Save Appointment" class="ui large right floated button primary">
+        <input type="submit" value="save staff member" class="ui large right floated button primary">
         </div>
     </form>
     </div>

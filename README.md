@@ -1,6 +1,6 @@
 # COVID Videoplatform Django Frontend
 
-This is an appointment management system for jitsi.
+This is an appointment management system for jitsi-meet video calls.
 
 It allows you to maintain a list of staff members which can be assigned appointments by date and time.
 
@@ -16,7 +16,7 @@ The system assumes you have your own jitsi-meet instance set up. You can in theo
 1. install python 3 and django 3
 
 
-2. install the less css compiler: 
+2. install the less css compiler (>= 3.11): 
 ```
 npm install -g less
 ```
