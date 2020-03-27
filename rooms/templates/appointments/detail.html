@@ -15,5 +15,7 @@
 	<p>till {{ appointment.end_time}}</p>
 {% endif %}
 
-<a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="button primary">join room</a>
+<a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="ui labeled icon button primary">
+<i class="video icon"></i>
+join room</a>
 {% endblock %}

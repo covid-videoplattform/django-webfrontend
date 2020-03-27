@@ -6,8 +6,8 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form method="post">{% csrf_token %}
+<form method="post" class="ui form">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create Appointment" class="button primary">
+    <input type="submit" value="Save Appointment" class="ui button primary">
 </form>
 {% endblock %}

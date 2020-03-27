@@ -8,31 +8,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
     {% compress css %}
-    <link type="text/less" rel="stylesheet" href="/static/less/styles.less" charset="utf-8">
-    <style type="text/less">
-    @font-size: 11pt;
-
-    body {
-      font-size: @font-size;
-    }
-    </style>
+    <link type="text/less" rel="stylesheet" href="/static/styles.less" charset="utf-8">
     {% endcompress %}
   </head>
   <body>
-    <section id=nav class="ui stackable container menu">
+    <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
       <div class="item">COVID Videoplattform</div>
-      <a class="item" href="/">MenuItem</a>
+      <a class="item {% if activate == 'staff' %}active{% endif %}" href="{% url 'rooms:staff-index' %}">Staff</a>
+      <a class="item {% if activate == 'appointments' %}active{% endif %}" href="{% url 'rooms:appointment-index' %}">Appointments</a>
     </section>
-    <h1 class="ui center aligned header"><a href="/">Title</a></h1>
-    <section id="main" class="ui container">
+   
+
+    <section id="main" class="ui vertical basic segment">
+      <div class="ui container">
+        <h1 class="ui header">{% if page_title %}{{ page_title }}{% endif %}</h1>
         {% block content %}
         {% endblock %}
+      </div>
     </section>
 
+
     <section id="footer" class="ui inverted vertical footer segment">
-      <ul>
-        <li><a href="/">FooterMenuItem</a></li>
-      </ul>
+      <div class="ui container">
+        <div class="ui secondary inverted menu">
+          <div class="right menu">
+            <a class="item" href="/imprint">imprint</a>
+            <a class="item" href="/privacy">privacy</a>
+          </div>
+        </ul>
+      </div>
 
       </section>
     </body>

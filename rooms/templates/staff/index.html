@@ -1,0 +1,29 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+{% if latest_staff_members_list %}
+    <table class="ui celled table">
+    	<thead>
+    		<tr>
+    			<th>id</th>
+    			<th>name</th>
+    			<th>email</th>
+    			<th>appointments</th>
+    		</tr>
+    	</thead>
+    {% for staff_member in latest_staff_members_list %}
+        <tr>
+        	<td><a href="{% url 'rooms:staff-detail' staff_member.id %}">{{staff_member.id}}</a></td>
+        	<td>{{ staff_member.name }}</a></td>
+        	<td>{{ staff_member.email }}</td>
+        	<td>{{ staff_member.appointment__count }} 
+                <a class="ui labeled icon button" href="#"><i class="print icon"></i>print</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>add new staff member</a>
+{% else %}
+    <p>No staff members yet. <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>create one</a></p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+{% if latest_appointments_list %}
+    <table class="ui celled table">
+    	<thead>
+    		<tr>
+    			<th>id</th>
+    			<th>name</th>
+    			<th>description</th>
+    			<th colspan=2>actions</th>
+    		</tr>
+    	</thead>
+    {% for appointment in latest_appointments_list %}
+        <tr>
+        	<td><a href="{% url 'rooms:appointment-detail' appointment.id %}">{{appointment.id}}</a></td>
+        	<td>{{ appointment.name }}</a></td>
+        	<td>{{ appointment.description }}</td>
+        	<td>
+                <a class="ui labeled icon button" href="#"><i class="print icon"></i>print</a>
+                <a class="ui labeled icon button" href="#"><i class="video icon"></i>join</a> 
+                <a class="ui labeled red icon button" href="#"><i class="trash icon"></i>delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create new appointment</a>
+{% else %}
+    <p>No appointments yet. <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create one</a></p>
+{% endif %}
+{% endblock %}

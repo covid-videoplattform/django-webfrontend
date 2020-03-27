@@ -1,0 +1,6 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@imagePath : '/static/themes/default/assets/images';
+@fontPath  : '/static/themes/default/assets/fonts';

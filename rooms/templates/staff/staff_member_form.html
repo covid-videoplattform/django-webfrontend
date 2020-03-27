@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<h1>New Staff Member</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form method="post" class="ui form">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="save staff member" class="ui button primary">
+</form>
+{% endblock %}
