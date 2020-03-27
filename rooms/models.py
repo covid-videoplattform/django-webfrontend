@@ -8,6 +8,7 @@ from django.urls import reverse
 class StaffMember(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(null=True, blank=True)
+    last_modified = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         return self.name
