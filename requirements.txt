@@ -1,3 +1,5 @@
 Django>=3.0.4
 django-compressor>=2.4
 django-phonenumber-field[phonenumberslite]
+factory_boy>=2.12
+coverage>=5.0.4
