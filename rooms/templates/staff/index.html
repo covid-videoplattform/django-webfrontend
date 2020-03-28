@@ -20,13 +20,13 @@
         	<td>{{ staffmember.email }}</td>
             <td>{{ staffmember.phone }}</td>
         	<td>{{ staffmember.appointment__count }} 
-                <a class="ui labeled icon button"  target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}"><i class="print icon"></i>print</a>
+                <a class="ui labeled icon button"  target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}"><i class="print icon"></i>{% trans 'print' %}</a>
             </td>
         </tr>
     {% endfor %}
     </table>
-    <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>add new staff member</a>
+    <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'add new staff member' %}</a>
 {% else %}
-    <p>No staff members yet. <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>create one</a></p>
+    <p>{% trans 'No staff members yet.' %} <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'create one' %}</a></p>
 {% endif %}
 {% endblock %}

@@ -14,7 +14,7 @@
   </head>
   <body>
     <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
-      <div class="item">COVID Videoplattform</div>
+      <div class="item">{% trans 'COVID Video Platform' %}</div>
       <a class="item {% if activate == 'staff' %}active{% endif %}"
          href="{% url 'rooms:staff-index' %}">{% trans 'Staff' %}</a>
       <a class="item {% if activate == 'appointments' %}active{% endif %}"

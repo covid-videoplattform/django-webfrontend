@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-28 13:34+0000\n"
+"POT-Creation-Date: 2020-03-28 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,32 +30,68 @@ msgstr "Englisch"
 msgid "End time should be after start time."
 msgstr "Ende sollte zeitlich nach Anfang kommen."
 
+#: rooms/templates/appointments/detail.html:21
+#: rooms/templates/staff/detail.html:39
+msgid "join room"
+msgstr "Raum betreten"
+
 #: rooms/templates/appointments/index.html:9 rooms/templates/staff/index.html:9
 msgid "id"
 msgstr "Nummer"
 
 #: rooms/templates/appointments/index.html:10
-#: rooms/templates/staff/index.html:10
+#: rooms/templates/staff/detail.html:24 rooms/templates/staff/index.html:10
+#: rooms/templates/staff/print.html:24
 msgid "name"
 msgstr "Name"
 
 #: rooms/templates/appointments/index.html:11
+#: rooms/templates/staff/detail.html:25 rooms/templates/staff/print.html:25
 msgid "description"
 msgstr "Beschreibung"
 
 #: rooms/templates/appointments/index.html:12
+#: rooms/templates/staff/detail.html:26
 msgid "actions"
 msgstr "Aktionen"
 
+#: rooms/templates/appointments/index.html:27
+#: rooms/templates/staff/index.html:23
+msgid "print"
+msgstr "drucken"
+
+#: rooms/templates/appointments/index.html:28
+#: rooms/templates/staff/detail.html:40
+msgid "delete"
+msgstr "löschen"
+
+#: rooms/templates/appointments/index.html:35
+msgid "create new appointment"
+msgstr "Neuen Termin erstellen"
+
+#: rooms/templates/appointments/index.html:37
+msgid "No appointments yet."
+msgstr "Noch keine Termine vorhanden."
+
+#: rooms/templates/appointments/index.html:37
+#: rooms/templates/staff/index.html:30
+msgid "create one"
+msgstr "Erstellen"
+
+#: rooms/templates/base_layout.html:17
+#: rooms/templates/flatpages/default.html:17
+msgid "COVID Video Platform"
+msgstr "COVID Videoplattform"
+
 #: rooms/templates/base_layout.html:19
+#: rooms/templates/flatpages/default.html:18
 msgid "Staff"
 msgstr "Mitarbeiter:innen"
 
 #: rooms/templates/base_layout.html:21
-#, fuzzy
-#| msgid "List of Appointments"
+#: rooms/templates/flatpages/default.html:19
 msgid "Appointments"
-msgstr "Terminliste"
+msgstr "Termine"
 
 #: rooms/templates/base_layout.html:51
 #: rooms/templates/flatpages/default.html:48
@@ -77,6 +113,10 @@ msgstr "Datenschutz"
 msgid "imprint"
 msgstr "Impressum"
 
+#: rooms/templates/staff/detail.html:49
+msgid "print this list"
+msgstr "Diese Liste drucken"
+
 #: rooms/templates/staff/index.html:11
 msgid "email"
 msgstr "E-Mail"
@@ -86,10 +126,20 @@ msgid "phone"
 msgstr "Telefon"
 
 #: rooms/templates/staff/index.html:13
-#, fuzzy
-#| msgid "List of Appointments"
 msgid "appointments"
-msgstr "Terminliste"
+msgstr "Termine"
+
+#: rooms/templates/staff/index.html:28
+msgid "add new staff member"
+msgstr "Neue:n Mitarbeiter:in hinzufügen"
+
+#: rooms/templates/staff/index.html:30
+msgid "No staff members yet."
+msgstr "Keine Mitarbeiter:innen vorhanden."
+
+#: rooms/templates/staff/print.html:26
+msgid "link"
+msgstr "Link"
 
 #: rooms/views.py:32
 msgid "List of Appointments"
