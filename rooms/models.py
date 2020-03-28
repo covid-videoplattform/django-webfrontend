@@ -2,6 +2,7 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -40,7 +41,7 @@ class Appointment(models.Model):
             # Only do something if both fields are valid so far.
             if self.end_time <= self.start_time:
                 raise ValidationError(
-                    "end_time should be after start_time"
+                    _("End time should be after start time.")
                 )
         return cleaned_data
 

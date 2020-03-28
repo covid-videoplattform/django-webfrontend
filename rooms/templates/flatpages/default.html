@@ -15,8 +15,8 @@
   <body>
     <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
       <div class="item">COVID Videoplattform</div>
-      <a class="item" href="{% url 'rooms:staff-index' %}">Staff</a>
-      <a class="item" href="{% url 'rooms:appointment-index' %}">Appointments</a>
+      <a class="item" href="{% url 'rooms:staff-index' %}">{% trans 'Staff' %}</a>
+      <a class="item" href="{% url 'rooms:appointment-index' %}">{% trans 'Appointments' %}</a>
     </section>
    
 
@@ -31,10 +31,27 @@
     <section id="footer" class="ui inverted vertical footer segment">
       <div class="ui container">
         <div class="ui secondary inverted menu">
+          <form  class="ui form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+          <input name="next" value="{{ request.path }}" type="hidden"/>
+            <div class="ui action input">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"
+                      {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                      {{ language.name_local }} <i class="{{ language.code }} flag"></i> ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="{% trans 'switch' %}" class="ui teal right button">
+            </div>
+        </form>
           <div class="right menu">
-            <a class="item {% if flatpage.url == '/about/' %}active{% endif %}" href="/about/">about</a>
-            <a class="item {% if flatpage.url == '/privacy/' %}active{% endif %}" href="/privacy/">privacy</a>
-            <a class="item {% if flatpage.url == '/imprint/' %}active{% endif %}" href="/imprint/">imprint</a>
+            <a class="item {% if flatpage.url == '/about/' %}active{% endif %}" href="/about/">{% trans 'about' %}</a>
+            <a class="item {% if flatpage.url == '/privacy/' %}active{% endif %}" href="/privacy/">{% trans 'privacy' %}</a>
+            <a class="item {% if flatpage.url == '/imprint/' %}active{% endif %}" href="/imprint/">{% trans 'imprint' %}</a>
           </div>
         </ul>
       </div>
