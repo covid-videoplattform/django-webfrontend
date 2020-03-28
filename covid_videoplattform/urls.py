@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('rooms.urls')),
     path('admin/', admin.site.urls),
     path('p/', include('django.contrib.flatpages.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
     re_path(r'^(?P<url>.*/)$', views.flatpage),
 ]
