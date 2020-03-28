@@ -156,6 +156,6 @@ PHONENUMBER_DEFAULT_REGION = 'DE'
 
 
 # which flatpage site to display
-SITE_ID = 2
+SITE_ID = 1
 
 SECURE_REFERRER_POLICY = 'same-origin'
