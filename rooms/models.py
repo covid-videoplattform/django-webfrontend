@@ -16,6 +16,9 @@ class StaffMember(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('rooms:staff-detail', kwargs={'pk': self.pk})
+
 
 # represents the connection between a staffmember, a time and a videochatroom
 class Appointment(models.Model):
