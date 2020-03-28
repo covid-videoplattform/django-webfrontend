@@ -1,4 +1,5 @@
 {% extends 'base_layout.html' %}
+{% load i18n %}
 
 {% block content %}
 {% if latest_appointments_list %}
@@ -31,8 +32,9 @@
         </tr>
     {% endfor %}
     </table>
-    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create new appointment</a>
+    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}">
+        <i class="plus icon"></i>{% trans 'create new appointment' %}</a>
 {% else %}
-    <p>No appointments yet. <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create one</a></p>
+    <p>{% trans 'No appointments yet.' %} <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>{% trans 'create one' %}</a></p>
 {% endif %}
 {% endblock %}

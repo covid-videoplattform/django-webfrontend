@@ -1,4 +1,5 @@
 {% extends 'base_layout.html' %}
+{% load i18n %}
 
 {% block content %}
 <h1>{{ staffmember.name }}</h1>
@@ -20,9 +21,9 @@
 <table class="ui very basic striped table">
     <thead>
         <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>actions</th>
+            <th>{% trans 'name' %}</th>
+            <th>{% trans 'description' %}</th>
+            <th>{% trans 'actions' %}</th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +36,8 @@
             <td>{{ a.description }}</td>
             <td>
                 <a href="{{ jitsi_base_url }}{{ appointment.room_name }}" class="ui labeled icon button primary">
-                    <i class="video icon"></i>join room</a>
-                <a class="ui small red icon button" href="{% url 'rooms:appointment-delete' a.id %}">
+                    <i class="video icon"></i>{% trans 'join room' %}</a>
+                <a class="ui small red icon button" title="{% trans 'delete' %}" href="{% url 'rooms:appointment-delete' a.id %}">
                     <i class="trash icon"></i></a>
             </td>
         </tr>
@@ -45,7 +46,7 @@
 
 </table>
 <a class="ui labeled icon button" target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}">
-                    <i class="print icon"></i>print this list</a>
+                    <i class="print icon"></i>{% trans 'print this list' %}</a>
 
 
 {% endblock %}

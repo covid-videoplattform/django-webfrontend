@@ -1,4 +1,5 @@
 {% load compress %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
@@ -6,16 +7,17 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
     {% compress css %}
     <link type="text/less" rel="stylesheet" href="/static/styles.less" charset="utf-8">
     {% endcompress %}
   </head>
   <body>
     <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
-      <div class="item">COVID Videoplattform</div>
-      <a class="item {% if activate == 'staff' %}active{% endif %}" href="{% url 'rooms:staff-index' %}">Staff</a>
-      <a class="item {% if activate == 'appointments' %}active{% endif %}" href="{% url 'rooms:appointment-index' %}">Appointments</a>
+      <div class="item">{% trans 'COVID Video Platform' %}</div>
+      <a class="item {% if activate == 'staff' %}active{% endif %}"
+         href="{% url 'rooms:staff-index' %}">{% trans 'Staff' %}</a>
+      <a class="item {% if activate == 'appointments' %}active{% endif %}"
+         href="{% url 'rooms:appointment-index' %}">{% trans 'Appointments' %}</a>
     </section>
    
 
@@ -31,10 +33,28 @@
     <section id="footer" class="ui inverted vertical footer segment">
       <div class="ui container">
         <div class="ui secondary inverted menu">
+        <form  class="ui form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+          <input name="next" value="{{ request.path }}" type="hidden"/>
+            <div class="ui action input">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"
+                      {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                      {{ language.name_local }} <i class="{{ language.code }} flag"></i> ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="{% trans 'switch' %}" class="ui teal right button">
+            </div>
+        </form>
+        
           <div class="right menu">
-            <a class="item" href="/about/">about</a>
-            <a class="item" href="/privacy/">privacy</a>
-            <a class="item" href="/imprint/">imprint</a>
+            <a class="item" href="/about/">{% trans 'about' %}</a>
+            <a class="item" href="/privacy/">{% trans 'privacy' %}</a>
+            <a class="item" href="/imprint/">{% trans 'imprint' %}</a>
           </div>
         </ul>
       </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-28 14:15+0000\n"
+"POT-Creation-Date: 2020-03-28 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: covid_videoplattform/settings.py:129
+#: covid_videoplattform/settings.py:130
 msgid "German"
 msgstr "Deutsch"
 
-#: covid_videoplattform/settings.py:130
+#: covid_videoplattform/settings.py:131
 msgid "English"
 msgstr "Englisch"
 
-#: rooms/models.py:44
+#: rooms/models.py:47
 msgid "End time should be after start time."
 msgstr "Ende sollte zeitlich nach Anfang kommen."
 
@@ -82,38 +82,38 @@ msgstr "Noch keine Termine vorhanden."
 msgid "create one"
 msgstr "Erstellen"
 
-#: rooms/templates/base_layout.html:17
-#: rooms/templates/flatpages/default.html:17
+#: rooms/templates/base_layout.html:16
+#: rooms/templates/flatpages/default.html:16
 msgid "COVID Video Platform"
 msgstr "COVID Videoplattform"
 
-#: rooms/templates/base_layout.html:19
-#: rooms/templates/flatpages/default.html:18
+#: rooms/templates/base_layout.html:18
+#: rooms/templates/flatpages/default.html:17
 msgid "Staff"
 msgstr "Mitarbeiter:innen"
 
-#: rooms/templates/base_layout.html:21
-#: rooms/templates/flatpages/default.html:19
+#: rooms/templates/base_layout.html:20
+#: rooms/templates/flatpages/default.html:18
 msgid "Appointments"
 msgstr "Termine"
 
-#: rooms/templates/base_layout.html:51
-#: rooms/templates/flatpages/default.html:48
+#: rooms/templates/base_layout.html:50
+#: rooms/templates/flatpages/default.html:47
 msgid "switch"
 msgstr "wechseln"
 
-#: rooms/templates/base_layout.html:56
-#: rooms/templates/flatpages/default.html:52
+#: rooms/templates/base_layout.html:55
+#: rooms/templates/flatpages/default.html:51
 msgid "about"
 msgstr "Über dieses Projekt"
 
-#: rooms/templates/base_layout.html:57
-#: rooms/templates/flatpages/default.html:53
+#: rooms/templates/base_layout.html:56
+#: rooms/templates/flatpages/default.html:52
 msgid "privacy"
 msgstr "Datenschutz"
 
-#: rooms/templates/base_layout.html:58
-#: rooms/templates/flatpages/default.html:54
+#: rooms/templates/base_layout.html:57
+#: rooms/templates/flatpages/default.html:53
 msgid "imprint"
 msgstr "Impressum"
 
