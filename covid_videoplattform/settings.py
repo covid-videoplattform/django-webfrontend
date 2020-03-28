@@ -115,9 +115,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
+
 LANGUAGE_CODE = 'de'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -153,5 +154,8 @@ COMPRESS_PRECOMPILERS = (
 PHONENUMBER_DB_FORMAT = 'E164'
 PHONENUMBER_DEFAULT_REGION = 'DE'
 
+
 # which flatpage site to display
-SITE_ID = 3
+SITE_ID = 2
+
+SECURE_REFERRER_POLICY = 'same-origin'
