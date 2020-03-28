@@ -7,11 +7,11 @@
   <i class="trash icon"></i>
   <div class="content">
     <div class="header">
-      Delete Appointment
+      {% trans 'Delete Appointment' %}
     </div>
     <form class="ui form" method="post">{% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
-        <input type="submit" class="ui large right floated red button" value="Confirm">
+        <p>{% blocktrans %}Are you sure you want to delete {{ object }}?{% endblocktrans %}</p>
+        <input type="submit" class="ui large right floated red button" value="{% trans 'Confirm' %}">
     </form>
   </div>
 </div>

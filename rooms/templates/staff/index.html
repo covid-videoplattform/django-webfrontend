@@ -16,7 +16,7 @@
     {% for staffmember in latest_staff_members_list %}
         <tr>
         	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{staffmember.id}}</a></td>
-        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{ staff_member.name }}</a></td>
+        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{ staffmember.name }}</a></td>
         	<td>{{ staffmember.email }}</td>
             <td>{{ staffmember.phone }}</td>
         	<td>{{ staffmember.appointment__count }} 

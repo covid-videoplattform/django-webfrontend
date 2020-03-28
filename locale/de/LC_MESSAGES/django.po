@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-28 15:27+0100\n"
+"POT-Creation-Date: 2020-03-28 16:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,21 @@ msgstr "Englisch"
 #: rooms/models.py:47
 msgid "End time should be after start time."
 msgstr "Ende sollte zeitlich nach Anfang kommen."
+
+#: rooms/templates/appointments/appointment_confirm_delete.html:10
+msgid "Delete Appointment"
+msgstr "Termin löschen"
+
+#: rooms/templates/appointments/appointment_confirm_delete.html:13
+#: rooms/templates/staff/staffmember_confirm_delete.html:13
+#, python-format
+msgid "Are you sure you want to delete %(object)s?"
+msgstr "Sind Sie sicher, dass Sie %(object)s löschen wollen?"
+
+#: rooms/templates/appointments/appointment_confirm_delete.html:14
+#: rooms/templates/staff/staffmember_confirm_delete.html:14
+msgid "Confirm"
+msgstr "Bestätigen"
 
 #: rooms/templates/appointments/detail.html:21
 #: rooms/templates/staff/detail.html:39
@@ -144,6 +159,10 @@ msgstr "Keine Mitarbeiter:innen vorhanden."
 #: rooms/templates/staff/print.html:26
 msgid "link"
 msgstr "Link"
+
+#: rooms/templates/staff/staffmember_confirm_delete.html:10
+msgid "Delete Staff Member"
+msgstr "Mitarbeiter:in löschen"
 
 #: rooms/views.py:32
 msgid "List of Appointments"

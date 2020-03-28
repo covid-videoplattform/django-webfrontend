@@ -1,0 +1,42 @@
+- model: rooms.staffmember
+  pk: 1
+  fields:
+    name: 'Dr. Gregory House'
+    email: 'house@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
+- model: rooms.staffmember
+  pk: 2
+  fields:
+    name: 'Dr. Lisa Cuddy'
+    email: 'cuddy@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
+- model: rooms.staffmember
+  pk: 3
+  fields:
+    name: 'Dr. James Wilson'
+    email: 'wilson@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
+- model: rooms.staffmember
+  pk: 4
+  fields:
+    name: 'Dr. Eric Foreman'
+    email: 'foreman@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
+- model: rooms.staffmember
+  pk: 5
+  fields:
+    name: 'Dr. Allison Cameron'
+    email: 'cameron@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
+- model: rooms.staffmember
+  pk: 6
+  fields:
+    name: 'Dr. Robert Chase'
+    email: 'chase@princeton-plainsboro.com'
+    phone: null
+    last_modified: 2020-03-28 12:00:00+00:00
