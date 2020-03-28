@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
     'compressor',
+    'coverage',
     'phonenumber_field',
 ]
 
