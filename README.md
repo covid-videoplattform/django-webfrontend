@@ -15,9 +15,13 @@ The system assumes you have your own jitsi-meet instance set up. You can in theo
 
 1. install python 3 and django 3
 
+2. install all python dependencies from requirements.txt
 
-2. install the less css compiler (>= 3.11): 
+3. install the less css compiler (>= 3.11): 
 ```
 npm install -g less
 ```
 
+### i18n
+If you want to work on translations, make sure gettext is installed on your system, then use 
+`python manage.py compilemessages` to create the .po files in the locale folder. And `python manage.py compilemessages` to compile them into a .mo file for django to use.

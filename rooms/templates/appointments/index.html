@@ -1,33 +1,39 @@
 {% extends 'base_layout.html' %}
+{% load i18n %}
 
 {% block content %}
 {% if latest_appointments_list %}
     <table class="ui very basic striped table">
         <thead>
             <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>description</th>
-                <th colspan=2>actions</th>
+                <th>{% trans 'id' %}</th>
+                <th>{% trans 'name' %}</th>
+                <th>{% trans 'description' %}</th>
+                <th colspan=2>{% trans 'actions' %}</th>
             </tr>
         </thead>
     {% for appointment in latest_appointments_list %}
         <tr>
             <td><a href="{% url 'rooms:appointment-detail' appointment.id %}">{{appointment.id}}</a></td>
-            <td><a href="{% url 'rooms:staff-detail' appointment.staffmember_id %}">{{ appointment.staffmember }}</a></td>
+            <td>
+                {% if appointment.staffmember %}
+                <a href="{% url 'rooms:staff-detail' appointment.staffmember_id %}">{{ appointment.staffmember }}</a>
+                {% endif %}
+            </td>
             <td><a href="{% url 'rooms:appointment-detail' appointment.id %}">{{ appointment.name }}</a></td>
             <td>{{ appointment.description }}</td>
             <td>
                 <a class="ui labeled icon button" target="_blank" href="{% url 'rooms:appointment-print' appointment.id %}">
-                    <i class="print icon"></i>print</a>
-                <a class="ui small red icon button" href="{% url 'rooms:appointment-delete' appointment.id %}">
+                    <i class="print icon"></i>{% trans 'print' %}</a>
+                <a class="ui small red icon button" title="{% trans 'delete' %}" href="{% url 'rooms:appointment-delete' appointment.id %}">
                     <i class="trash icon"></i></a>
             </td>
         </tr>
     {% endfor %}
     </table>
-    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create new appointment</a>
+    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}">
+        <i class="plus icon"></i>{% trans 'create new appointment' %}</a>
 {% else %}
-    <p>No appointments yet. <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>create one</a></p>
+    <p>{% trans 'No appointments yet.' %} <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>{% trans 'create one' %}</a></p>
 {% endif %}
 {% endblock %}
