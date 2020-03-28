@@ -55,3 +55,6 @@ class Appointment(models.Model):
 
     def get_absolute_url(self):
         return reverse('rooms:appointment-detail', kwargs={'pk': self.pk})
+
+    def short_description(self):
+        return (self.description[:75] + '…') if len(self.description) > 75 else self.description
