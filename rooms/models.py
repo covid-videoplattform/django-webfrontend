@@ -8,9 +8,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # health care worker who is available for appointments
 class StaffMember(models.Model):
-    name = models.CharField(max_length=255, help_text='Full name')
+    name = models.CharField(max_length=255, help_text=_('full name'))
     email = models.EmailField(null=True, blank=True,
-                              help_text='Contact email address')
+                              help_text=_('contact email address'))
     phone = PhoneNumberField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True, blank=True)
 
@@ -24,7 +24,7 @@ class StaffMember(models.Model):
 # represents the connection between a staffmember, a time and a videochatroom
 class Appointment(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True, blank=True)
     start_time = models.DateTimeField(
         'start of appointment', null=True, blank=True)
