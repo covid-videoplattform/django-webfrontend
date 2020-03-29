@@ -1,5 +1,8 @@
+import datetime
+
 from django import forms
 from rooms.models import Appointment, StaffMember
+from django.utils import timezone
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.utils.translation import gettext_lazy as _
 
@@ -11,9 +14,12 @@ class AppointmentForm(forms.ModelForm):
         fields = ['name', 'description', 'start_time', 'end_time', 'staffmember', 'room_name']
         widgets = {
             'description': forms.Textarea(attrs={
-                'class': 'test3', 'cols': 20, 'rows': 20}),
-            'start_time': forms.DateTimeInput(),
-            'end_time': forms.DateTimeInput(),
+                'class': 'test3', 'cols': 60, 'rows': 4}),
+            'start_time': forms.DateTimeInput(attrs={
+                'placeholder': timezone.now().strftime('%Y-%m-%d %H:%M')}),
+            'end_time': forms.DateTimeInput(attrs={
+                'placeholder': (timezone.now() + datetime.timedelta(minutes=30)).strftime('%Y-%m-%d %H:%M')
+                }),
         }
 
 

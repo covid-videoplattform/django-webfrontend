@@ -13,7 +13,7 @@
 
     <form method="post" class="ui form">{% csrf_token %}
         <div class="ui attached segment">
-        <div class="field">
+        <div class="required field">
             <label>{{ form.name.label }}</label>
             <div class="ui input">{{ form.name }}</div>
         </div>

@@ -24,6 +24,13 @@
     <section id="main" class="ui vertical basic segment">
       <div class="ui container">
         <h1 class="ui header">{% if page_title %}{{ page_title }}{% endif %}</h1>
+        {% if messages %}
+        <div class="ui {{ message.tags }} message">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
         {% block content %}
         {% endblock %}
       </div>
