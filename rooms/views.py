@@ -1,9 +1,10 @@
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Count
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView
 from django.views.generic.edit import CreateView
 
 
@@ -62,10 +63,13 @@ class AppointmentPrintView(DetailView):
 
 class AppointmentCreate(CreateView):
     model = Appointment
-    form = AppointmentForm()
+    form_class = AppointmentForm
     template_name = 'appointments/appointment_form.html'
-    fields = ['name', 'description', 'start_time', 'end_time', 'staffmember',
-              'room_name']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('New Appointment')
+        return context
 
 
 class AppointmentDelete(DeleteView):
@@ -133,9 +137,13 @@ class StaffPrintView(DetailView):
 
 class StaffCreate(CreateView):
     model = StaffMember
-    form = StaffMemberForm()
+    form_class = StaffMemberForm
     template_name = 'staff/staffmember_form.html'
-    fields = ['name', 'email', 'phone']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('New Staff Member')
+        return context
 
 
 class StaffMemberDelete(DeleteView):
