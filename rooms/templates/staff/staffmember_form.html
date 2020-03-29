@@ -4,7 +4,7 @@
 {% block content %}
 <div class="ui text container">
     <div class="ui raised segments">
-    <h1 class="ui top attached header">New Staff Member</h1>
+    <h1 class="ui top attached header">{{ title }}</h1>
     {% if error_message %}
     <div class="ui attached segment">
     <p><strong>{{ error_message }}</strong></p>
@@ -13,10 +13,23 @@
 
     <form method="post" class="ui form">{% csrf_token %}
         <div class="ui attached segment">
-        {{ form.as_p }}
+        <div class="field">
+            <label>{{ form.name.label }}</label>
+            <div class="ui input">{{ form.name }}</div>
+        </div>
+        <div class="field">
+            <label>{{ form.email.label }}</label>
+            <div class="ui input">{{ form.email }}</div>
+        </div>
+        <div class="field">
+            <label>{{ form.phone.label }}</label>
+            <div class="ui left action input">
+            {{ form.phone }}
+            </div>
+        </div>
         </div>
         <div class="ui bottom attached clearing segment">
-        <input type="submit" value="save staff member" class="ui large right floated button primary">
+        <input type="submit" value="{% trans 'save staff member' %}" class="ui large right floated button primary">
         </div>
     </form>
     </div>

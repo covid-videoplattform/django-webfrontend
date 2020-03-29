@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-28 16:13+0100\n"
+"POT-Creation-Date: 2020-03-29 15:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: covid_videoplattform/settings.py:130
+#: covid_videoplattform/settings.py:131
 msgid "German"
 msgstr "Deutsch"
 
-#: covid_videoplattform/settings.py:131
+#: covid_videoplattform/settings.py:132
 msgid "English"
 msgstr "Englisch"
 
-#: rooms/models.py:47
+#: rooms/forms.py:26
+msgid "Firstname Lastname"
+msgstr "Vorname Nachname"
+
+#: rooms/forms.py:28
+msgid "name@example.com"
+msgstr "name@beispiel.de"
+
+#: rooms/models.py:11
+msgid "full name"
+msgstr "Name"
+
+#: rooms/models.py:13
+msgid "contact email address"
+msgstr "E-Mailadresse"
+
+#: rooms/models.py:15
+msgid "phone number"
+msgstr "Telefonnummer"
+
+#: rooms/models.py:27 rooms/templates/appointments/index.html:11
+#: rooms/templates/staff/detail.html:24 rooms/templates/staff/index.html:10
+#: rooms/templates/staff/print.html:24
+msgid "name"
+msgstr "Name"
+
+#: rooms/models.py:29 rooms/templates/appointments/index.html:12
+#: rooms/templates/staff/detail.html:25 rooms/templates/staff/print.html:25
+msgid "description"
+msgstr "Beschreibung"
+
+#: rooms/models.py:32
+msgid "start of appointment"
+msgstr "Terminbeginn"
+
+#: rooms/models.py:34
+msgid "end of appointment"
+msgstr "Terminende"
+
+#: rooms/models.py:37 rooms/templates/appointments/index.html:10
+msgid "staff member"
+msgstr "Mitarbeiter:in"
+
+#: rooms/models.py:39
+msgid "room name"
+msgstr "Raumname"
+
+#: rooms/models.py:51
 msgid "End time should be after start time."
 msgstr "Ende sollte zeitlich nach Anfang kommen."
 
@@ -45,6 +92,10 @@ msgstr "Sind Sie sicher, dass Sie %(object)s löschen wollen?"
 msgid "Confirm"
 msgstr "Bestätigen"
 
+#: rooms/templates/appointments/appointment_form.html:20
+msgid "Save Appointment"
+msgstr "Termin speichern"
+
 #: rooms/templates/appointments/detail.html:21
 #: rooms/templates/staff/detail.html:39
 msgid "join room"
@@ -53,21 +104,6 @@ msgstr "Raum betreten"
 #: rooms/templates/appointments/index.html:9 rooms/templates/staff/index.html:9
 msgid "id"
 msgstr "Nummer"
-
-#: rooms/templates/appointments/index.html:10
-msgid "staff member"
-msgstr "Mitarbeiter:in"
-
-#: rooms/templates/appointments/index.html:11
-#: rooms/templates/staff/detail.html:24 rooms/templates/staff/index.html:10
-#: rooms/templates/staff/print.html:24
-msgid "name"
-msgstr "Name"
-
-#: rooms/templates/appointments/index.html:12
-#: rooms/templates/staff/detail.html:25 rooms/templates/staff/print.html:25
-msgid "description"
-msgstr "Beschreibung"
 
 #: rooms/templates/appointments/index.html:13
 #: rooms/templates/staff/detail.html:26
@@ -164,10 +200,22 @@ msgstr "Link"
 msgid "Delete Staff Member"
 msgstr "Mitarbeiter:in löschen"
 
-#: rooms/views.py:32
+#: rooms/templates/staff/staffmember_form.html:19
+msgid "save staff member"
+msgstr "Mitarbeiter:in speichern"
+
+#: rooms/views.py:33
 msgid "List of Appointments"
 msgstr "Terminliste"
 
-#: rooms/views.py:96
+#: rooms/views.py:71
+msgid "New Appointment"
+msgstr "Neuer Termin"
+
+#: rooms/views.py:100
 msgid "List of Staff Members"
 msgstr "Liste der Mitarbeiter:innen"
+
+#: rooms/views.py:145
+msgid "New Staff Member"
+msgstr "Mitarbeiter:in anlegen"

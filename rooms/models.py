@@ -8,10 +8,11 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # health care worker who is available for appointments
 class StaffMember(models.Model):
-    name = models.CharField(max_length=255, help_text=_('full name'))
+    name = models.CharField(max_length=255, verbose_name=_('full name'))
     email = models.EmailField(null=True, blank=True,
-                              help_text=_('contact email address'))
-    phone = PhoneNumberField(null=True, blank=True)
+                              verbose_name=_('contact email address'))
+    phone = PhoneNumberField(null=True, blank=True,
+                             verbose_name=_('phone number'))
     last_modified = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
@@ -23,16 +24,19 @@ class StaffMember(models.Model):
 
 # represents the connection between a staffmember, a time and a videochatroom
 class Appointment(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(max_length=255, verbose_name=_('name'))
+    description = models.TextField(null=True, blank=True,
+                                   verbose_name=_('description'))
     last_modified = models.DateTimeField(auto_now=True, blank=True)
     start_time = models.DateTimeField(
-        'start of appointment', null=True, blank=True)
+        _('start of appointment'), null=True, blank=True)
     end_time = models.DateTimeField(
-        'end of appointment', null=True, blank=True)
+        _('end of appointment'), null=True, blank=True)
     staffmember = models.ForeignKey(
-        StaffMember, on_delete=models.SET_NULL, null=True, blank=True)
-    room_name = models.CharField(max_length=255, null=True, blank=True)
+        StaffMember, on_delete=models.SET_NULL, null=True, blank=True,
+        verbose_name=_('staff member'))
+    room_name = models.CharField(max_length=255, null=True, blank=True, 
+                                 verbose_name=_('room name'))
 
     def clean(self, *args, **kwargs):
         cleaned_data = super(Appointment, self).save(*args, **kwargs)
