@@ -1,9 +1,11 @@
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView
 from django.views.generic.edit import CreateView
 
 
@@ -11,12 +13,12 @@ from .forms import AppointmentForm, StaffMemberForm
 from .models import Appointment, StaffMember
 
 
-class AppointmentIndexView(ListView):
+class AppointmentIndexView(LoginRequiredMixin, ListView):
+    paginate_by = 10
     template_name = 'appointments/index.html'
-    context_object_name = 'latest_appointments_list'
 
     def get_queryset(self):
-        return Appointment.objects.order_by('-start_time')[:10]
+        return Appointment.objects.order_by('-start_time')
 
     def head(self, *args, **kwargs):
         last_appointment = self.get_queryset().latest('-last_modified')
@@ -33,7 +35,7 @@ class AppointmentIndexView(ListView):
         return context
 
 
-class AppointmentDetailView(DetailView):
+class AppointmentDetailView(LoginRequiredMixin, DetailView):
     model = Appointment
     template_name = 'appointments/detail.html'
 
@@ -50,7 +52,7 @@ class AppointmentDetailView(DetailView):
         return response
 
 
-class AppointmentPrintView(DetailView):
+class AppointmentPrintView(LoginRequiredMixin, DetailView):
     model = Appointment
     template_name = 'appointments/print.html'
 
@@ -60,27 +62,30 @@ class AppointmentPrintView(DetailView):
         return context
 
 
-class AppointmentCreate(CreateView):
+class AppointmentCreate(LoginRequiredMixin, CreateView):
     model = Appointment
-    form = AppointmentForm()
+    form_class = AppointmentForm
     template_name = 'appointments/appointment_form.html'
-    fields = ['name', 'description', 'start_time', 'end_time', 'staffmember',
-              'room_name']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('New Appointment')
+        return context
 
 
-class AppointmentDelete(DeleteView):
+class AppointmentDelete(LoginRequiredMixin, DeleteView):
     model = Appointment
     template_name = 'appointments/appointment_confirm_delete.html'
     success_url = reverse_lazy('rooms:appointment-index')
 
 
-class StaffIndexView(ListView):
+class StaffIndexView(LoginRequiredMixin, ListView):
+    paginate_by = 10
     template_name = 'staff/index.html'
-    context_object_name = 'latest_staff_members_list'
     staff_members = StaffMember.objects.annotate(Count('appointment'))
 
     def get_queryset(self):
-        return StaffMember.objects.order_by('-name')[:10]
+        return StaffMember.objects.order_by('-name')
 
     def head(self, *args, **kwargs):
         last_modified_staff = self.get_queryset().latest('-last_modified')
@@ -97,7 +102,7 @@ class StaffIndexView(ListView):
         return context
 
 
-class StaffDetailView(DetailView):
+class StaffDetailView(LoginRequiredMixin, DetailView):
     model = StaffMember
     template_name = 'staff/detail.html'
 
@@ -114,7 +119,7 @@ class StaffDetailView(DetailView):
         return response
 
 
-class StaffPrintView(DetailView):
+class StaffPrintView(LoginRequiredMixin, DetailView):
     model = StaffMember
     template_name = 'staff/print.html'
 
@@ -131,14 +136,18 @@ class StaffPrintView(DetailView):
         return response
 
 
-class StaffCreate(CreateView):
+class StaffCreate(LoginRequiredMixin, CreateView):
     model = StaffMember
-    form = StaffMemberForm()
+    form_class = StaffMemberForm
     template_name = 'staff/staffmember_form.html'
-    fields = ['name', 'email', 'phone']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('New Staff Member')
+        return context
 
 
-class StaffMemberDelete(DeleteView):
+class StaffMemberDelete(LoginRequiredMixin, DeleteView):
     model = StaffMember
     template_name = 'staff/staffmember_confirm_delete.html'
     success_url = reverse_lazy('rooms:staff-index')

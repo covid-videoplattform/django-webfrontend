@@ -1,0 +1,25 @@
+{% extends 'base_layout.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui text container">
+    <div class="ui raised segments">
+        <h1 class="ui top attached header">{% trans 'Login' %}</h1>
+        <form method="post" class="ui form">{% csrf_token %}
+            <div class="ui attached segment">
+            <div class="required field">
+                <label>{{ form.username.label }}</label>
+                <div class="ui input">{{ form.username }}</div>
+            </div>
+            <div class="required field">
+                <label>{{ form.password.label }}</label>
+                <div class="ui input">{{ form.password }}</div>
+            </div>
+            </div>
+            <div class="ui bottom attached clearing segment">
+            <input type="submit" value="{% trans 'login' %}" class="ui large right floated button primary">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

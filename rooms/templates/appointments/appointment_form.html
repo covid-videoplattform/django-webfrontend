@@ -4,7 +4,7 @@
 {% block content %}
 <div class="ui text container">
     <div class="ui raised segments">
-    <h1 class="ui top attached header">New Appointment</h1>
+    <h1 class="ui top attached header">{{ title }}</h1>
 
     {% if error_message %}
     <div class="ui attached segment">
@@ -14,10 +14,43 @@
 
     <form method="post" class="ui form">{% csrf_token %}
         <div class="ui attached segment">
-        {{ form.as_p }}
+        <div class="required field">
+            <label>{{ form.name.label }}</label>
+            <div class="ui input">{{ form.name }}</div>
+        </div>
+        <div class="field">
+            <label>{{ form.description.label }}</label>
+            <div class="ui input">{{ form.description }}</div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>{{ form.start_time.label }}</label>
+                <div class="ui input">
+                {{ form.start_time }}
+                </div>
+            </div>
+            <div class="field">
+                <label>{{ form.end_time.label }}</label>
+                <div class="ui input">
+                {{ form.end_time }}
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>{{ form.staffmember.label }}</label>
+            <div class="ui input">
+            {{ form.staffmember }}
+            </div>
+        </div>
+        <div class="field">
+            <label>{{ form.room_name.label }}</label>
+            <div class="ui input">
+            {{ form.room_name }}
+            </div>
+        </div>
         </div>
         <div class="ui bottom attached clearing segment">
-        <input type="submit" value="Save Appointment" class="ui large right floated button primary">
+        <input type="submit" value="{% trans 'Save Appointment' %}" class="ui large right floated button primary">
         </div>
     </form>
     </div>

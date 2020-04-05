@@ -22,6 +22,10 @@ The system assumes you have your own jitsi-meet instance set up. You can in theo
 npm install -g less
 ```
 
+### fixtures / pre-seed database
+You should run  `python manage.py loaddata pages` to add the initial flatpages for / (home), about, imprint and privacy. You can also run `python manage.py loaddata house` to add some example staff members to your database.
+
+
 ### i18n
 If you want to work on translations, make sure gettext is installed on your system, then use 
 `python manage.py compilemessages` to create the .po files in the locale folder. And `python manage.py compilemessages` to compile them into a .mo file for django to use.

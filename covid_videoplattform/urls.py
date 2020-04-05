@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.contrib.auth import views as auth_views
 from django.contrib.flatpages import views
 
 urlpatterns = [
@@ -22,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('p/', include('django.contrib.flatpages.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logged_out.html'), name='logout'),
     re_path(r'^(?P<url>.*/)$', views.flatpage),
 ]

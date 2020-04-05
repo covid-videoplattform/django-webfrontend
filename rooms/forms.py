@@ -1,20 +1,36 @@
-from django.forms import ModelForm, TextInput
+import datetime
+
+from django import forms
 from rooms.models import Appointment, StaffMember
+from django.utils import timezone
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from django.utils.translation import gettext_lazy as _
 
 
-class AppointmentForm(ModelForm):
+class AppointmentForm(forms.ModelForm):
+
     class Meta:
         model = Appointment
-        fields = ['name', 'description',
-                  'start_time', 'end_time', 'staffmember', 'room_name']
+        fields = ['name', 'description', 'start_time', 'end_time', 'staffmember', 'room_name']
+        widgets = {
+            'description': forms.Textarea(attrs={
+                'class': 'test3', 'cols': 60, 'rows': 4}),
+            'start_time': forms.DateTimeInput(attrs={
+                'placeholder': timezone.now().strftime('%Y-%m-%d %H:%M')}),
+            'end_time': forms.DateTimeInput(attrs={
+                'placeholder': (timezone.now() + datetime.timedelta(minutes=30)).strftime('%Y-%m-%d %H:%M')
+                }),
+        }
 
 
-class StaffMemberForm(ModelForm):
+class StaffMemberForm(forms.ModelForm):
     class Meta:
         model = StaffMember
         fields = ['name', 'email', 'phone']
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Firstname Lastname'}),
-            'email': TextInput(attrs={'placeholder': 'name@example.com'}),
-            'phone': TextInput(attrs={'placeholder': '0123 456 7890'}),
+            'name': forms.TextInput(attrs={
+                'placeholder': _('Firstname Lastname')}),
+            'email': forms.DateTimeInput(attrs={
+                'placeholder': _('name@example.com')}),
+            'phone': PhoneNumberPrefixWidget(attrs={}),
         }
