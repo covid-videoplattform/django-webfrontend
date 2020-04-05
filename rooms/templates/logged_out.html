@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui text container">
+    <div class="ui raised segments">
+        <div class="ui success message">
+            <div class="header">{% trans 'Logout' %}</div>
+            <p>{% trans 'you have been logged out successfully.' %}</p>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

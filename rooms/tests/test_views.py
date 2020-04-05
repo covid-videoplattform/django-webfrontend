@@ -1,13 +1,32 @@
 import datetime
 
+from django.contrib import auth
+from django.contrib.auth.models import User
 from django.http import HttpRequest
-from django.test import TestCase
+from django.test import Client, TestCase
 from django.urls import reverse
 
+
 from .. import views
+from ..factories import UserFactory
+
+
+class LoginTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = UserFactory.create(username='user1')
+
+    def test_user_can_login(self):
+        response = self.client.login(username='user1', password='secret')
+        user = auth.get_user(self.client)
+        self.assertTrue(user.is_authenticated)
 
 
 class StaffIndexTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = UserFactory.create(username='user1')
+        self.client.login(username='user1', password='secret')
 
     def test_view_status_code(self):
         response = self.client.get('/staff/')
@@ -30,6 +49,10 @@ class StaffIndexTests(TestCase):
 
 
 class AppointmentIndexTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = UserFactory.create(username='user1')
+        self.client.login(username='user1', password='secret')
 
     def test_view_status_code(self):
         response = self.client.get('/appointments/')

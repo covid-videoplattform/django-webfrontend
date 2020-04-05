@@ -13,11 +13,28 @@
   </head>
   <body>
     <section id=nav class="ui stackable container menu" style="margin: 3em 0;">
-      <div class="item">{% trans 'COVID Video Platform' %}</div>
+      <a class="item" href="/">{% trans 'COVID Video Platform' %}</a>
       <a class="item {% if activate == 'staff' %}active{% endif %}"
          href="{% url 'rooms:staff-index' %}">{% trans 'Staff' %}</a>
       <a class="item {% if activate == 'appointments' %}active{% endif %}"
          href="{% url 'rooms:appointment-index' %}">{% trans 'Appointments' %}</a>
+      <div class="right menu">
+        {% if user.is_authenticated %}
+          <div class="item">
+            <i class="user icon"></i>
+            {{ user.username }}
+          </div>
+          <div class="item">
+            <a href="{% url 'logout' %}">
+            <i class="sign-out icon"></i>{% trans 'logout' %}</a>
+          </div>
+        {% else %}
+          <div class="item">
+            <a href="{% url 'login' %}?next=/appointments/" class="ui primary button">
+              <i class="sign-in icon"></i>{% trans 'login' %}</a>
+          </div>
+        {% endif %}
+      </div>
     </section>
    
 

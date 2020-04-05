@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 15:19+0200\n"
+"POT-Creation-Date: 2020-03-29 23:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#: rooms/forms.py:26
+#: rooms/forms.py:32
 msgid "Firstname Lastname"
 msgstr "Vorname Nachname"
 
-#: rooms/forms.py:28
+#: rooms/forms.py:34
 msgid "name@example.com"
 msgstr "name@beispiel.de"
 
@@ -92,7 +92,7 @@ msgstr "Sind Sie sicher, dass Sie %(object)s löschen wollen?"
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: rooms/templates/appointments/appointment_form.html:20
+#: rooms/templates/appointments/appointment_form.html:53
 msgid "Save Appointment"
 msgstr "Termin speichern"
 
@@ -148,25 +148,47 @@ msgstr "Mitarbeiter:innen"
 msgid "Appointments"
 msgstr "Termine"
 
-#: rooms/templates/base_layout.html:50
-#: rooms/templates/flatpages/default.html:47
+#: rooms/templates/base_layout.html:29
+#: rooms/templates/flatpages/default.html:27
+msgid "logout"
+msgstr "abmelden"
+
+#: rooms/templates/base_layout.html:34
+#: rooms/templates/flatpages/default.html:32 rooms/templates/login.html:20
+msgid "login"
+msgstr "anmelden"
+
+#: rooms/templates/base_layout.html:74
+#: rooms/templates/flatpages/default.html:64
 msgid "switch"
 msgstr "wechseln"
 
-#: rooms/templates/base_layout.html:55
-#: rooms/templates/flatpages/default.html:51
+#: rooms/templates/base_layout.html:79
+#: rooms/templates/flatpages/default.html:68
 msgid "about"
 msgstr "Über dieses Projekt"
 
-#: rooms/templates/base_layout.html:56
-#: rooms/templates/flatpages/default.html:52
+#: rooms/templates/base_layout.html:80
+#: rooms/templates/flatpages/default.html:69
 msgid "privacy"
 msgstr "Datenschutz"
 
-#: rooms/templates/base_layout.html:57
-#: rooms/templates/flatpages/default.html:53
+#: rooms/templates/base_layout.html:81
+#: rooms/templates/flatpages/default.html:70
 msgid "imprint"
 msgstr "Impressum"
+
+#: rooms/templates/logged_out.html:8
+msgid "Logout"
+msgstr "Abmelden"
+
+#: rooms/templates/logged_out.html:9
+msgid "you have been logged out successfully."
+msgstr "Sie wurden erfolgreich abgemeldet."
+
+#: rooms/templates/login.html:7
+msgid "Login"
+msgstr "Anmelden"
 
 #: rooms/templates/staff/detail.html:49
 msgid "print this list"
@@ -200,22 +222,22 @@ msgstr "Link"
 msgid "Delete Staff Member"
 msgstr "Mitarbeiter:in löschen"
 
-#: rooms/templates/staff/staffmember_form.html:19
+#: rooms/templates/staff/staffmember_form.html:32
 msgid "save staff member"
 msgstr "Mitarbeiter:in speichern"
 
-#: rooms/views.py:33
+#: rooms/views.py:34
 msgid "List of Appointments"
 msgstr "Terminliste"
 
-#: rooms/views.py:71
+#: rooms/views.py:72
 msgid "New Appointment"
 msgstr "Neuer Termin"
 
-#: rooms/views.py:100
+#: rooms/views.py:101
 msgid "List of Staff Members"
 msgstr "Liste der Mitarbeiter:innen"
 
-#: rooms/views.py:145
+#: rooms/views.py:146
 msgid "New Staff Member"
 msgstr "Mitarbeiter:in anlegen"
