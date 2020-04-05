@@ -2,39 +2,39 @@
 {% load i18n %}
 
 {% block content %}
-{% if latest_appointments_list %}
-    <table class="ui very basic striped table">
-        <thead>
-            <tr>
-                <th>{% trans 'id' %}</th>
-                <th>{% trans 'staff member' %}</th>
-                <th>{% trans 'name' %}</th>
-                <th>{% trans 'description' %}</th>
-                <th colspan=2>{% trans 'actions' %}</th>
-            </tr>
-        </thead>
-    {% for a in latest_appointments_list %}
+<a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}">
+    <i class="plus icon"></i>{% trans 'create new appointment' %}</a>
+<table class="ui very basic striped table">
+    <thead>
         <tr>
-            <td><a href="{% url 'rooms:appointment-detail' a.id %}">{{a.id}}</a></td>
-            <td>
-                {% if a.staffmember %}
-                <a href="{% url 'rooms:staff-detail' a.staffmember_id %}">{{ a.staffmember }}</a>
-                {% endif %}
-            </td>
-            <td><a href="{% url 'rooms:appointment-detail' a.id %}">{{ a.name }}</a></td>
-            <td>{{ a.short_description }}</td>
-            <td>
-                <a class="ui labeled icon button" target="_blank" href="{% url 'rooms:appointment-print' a.id %}">
-                    <i class="print icon"></i>{% trans 'print' %}</a>
-                <a class="ui small red icon button" title="{% trans 'delete' %}" href="{% url 'rooms:appointment-delete' a.id %}">
-                    <i class="trash icon"></i></a>
-            </td>
+            <th>{% trans 'id' %}</th>
+            <th>{% trans 'staff member' %}</th>
+            <th>{% trans 'name' %}</th>
+            <th>{% trans 'description' %}</th>
+            <th colspan=2>{% trans 'actions' %}</th>
         </tr>
-    {% endfor %}
-    </table>
-    <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}">
-        <i class="plus icon"></i>{% trans 'create new appointment' %}</a>
-{% else %}
-    <p>{% trans 'No appointments yet.' %} <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>{% trans 'create one' %}</a></p>
-{% endif %}
+    </thead>
+{% for a in page_obj %}
+    <tr>
+        <td><a href="{% url 'rooms:appointment-detail' a.id %}">{{a.id}}</a></td>
+        <td>
+            {% if a.staffmember %}
+            <a href="{% url 'rooms:staff-detail' a.staffmember_id %}">{{ a.staffmember }}</a>
+            {% endif %}
+        </td>
+        <td><a href="{% url 'rooms:appointment-detail' a.id %}">{{ a.name }}</a></td>
+        <td>{{ a.short_description }}</td>
+        <td>
+            <a class="ui labeled icon button" target="_blank" href="{% url 'rooms:appointment-print' a.id %}">
+                <i class="print icon"></i>{% trans 'print' %}</a>
+            <a class="ui small red icon button" title="{% trans 'delete' %}" href="{% url 'rooms:appointment-delete' a.id %}">
+                <i class="trash icon"></i></a>
+        </td>
+    </tr>
+{% empty %}
+    <tr><td colspan="6">
+        {% trans 'No appointments yet.' %} <a class="ui labeled icon button primary" href="{% url 'rooms:appointment-new' %}"><i class="plus icon"></i>{% trans 'create one' %}</a></td></tr>
+{% endfor %}
+</table>
+{% include '../pagination_snippet.html' with page_obj=page_obj only %}
 {% endblock %}

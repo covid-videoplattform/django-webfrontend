@@ -62,4 +62,7 @@ class Appointment(models.Model):
         return reverse('rooms:appointment-detail', kwargs={'pk': self.pk})
 
     def short_description(self):
-        return (self.description[:75] + '…') if len(self.description) > 75 else self.description
+        if self.description and len(self.description) > 75:
+            return (self.description[:75] + '…')
+        else:
+            return self.description
