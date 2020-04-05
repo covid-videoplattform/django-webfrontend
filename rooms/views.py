@@ -14,11 +14,11 @@ from .models import Appointment, StaffMember
 
 
 class AppointmentIndexView(LoginRequiredMixin, ListView):
+    paginate_by = 10
     template_name = 'appointments/index.html'
-    context_object_name = 'latest_appointments_list'
 
     def get_queryset(self):
-        return Appointment.objects.order_by('-start_time')[:10]
+        return Appointment.objects.order_by('-start_time')
 
     def head(self, *args, **kwargs):
         last_appointment = self.get_queryset().latest('-last_modified')
@@ -80,12 +80,12 @@ class AppointmentDelete(LoginRequiredMixin, DeleteView):
 
 
 class StaffIndexView(LoginRequiredMixin, ListView):
+    paginate_by = 10
     template_name = 'staff/index.html'
-    context_object_name = 'latest_staff_members_list'
     staff_members = StaffMember.objects.annotate(Count('appointment'))
 
     def get_queryset(self):
-        return StaffMember.objects.order_by('-name')[:10]
+        return StaffMember.objects.order_by('-name')
 
     def head(self, *args, **kwargs):
         last_modified_staff = self.get_queryset().latest('-last_modified')

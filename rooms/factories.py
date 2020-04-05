@@ -10,7 +10,6 @@ class StaffMemberFactory(factory.Factory):
     name = factory.Faker('name')
 
 
-# Another, different, factory for the same object
 class AppointmentFactory(factory.Factory):
     class Meta:
         model = models.Appointment

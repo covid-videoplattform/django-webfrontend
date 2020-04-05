@@ -2,31 +2,52 @@
 {% load i18n %}
 
 {% block content %}
-{% if latest_staff_members_list %}
-    <table class="ui very basic striped table">
-    	<thead>
-    		<tr>
-    			<th>{% trans 'id' %}</th>
-    			<th>{% trans 'name' %}</th>
-    			<th>{% trans 'email' %}</th>
-                <th>{% trans 'phone' %}</th>
-    			<th>{% trans 'appointments' %}</th>
-    		</tr>
-    	</thead>
-    {% for staffmember in latest_staff_members_list %}
+<a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'add new staff member' %}</a>
+<table class="ui very basic striped table">
+    <thead>
         <tr>
-        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{staffmember.id}}</a></td>
-        	<td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{ staffmember.name }}</a></td>
-        	<td>{{ staffmember.email }}</td>
-            <td>{{ staffmember.phone }}</td>
-        	<td>{{ staffmember.appointment__count }} 
-                <a class="ui labeled icon button"  target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}"><i class="print icon"></i>{% trans 'print' %}</a>
-            </td>
+            <th>{% trans 'id' %}</th>
+            <th>{% trans 'name' %}</th>
+            <th>{% trans 'email' %}</th>
+            <th>{% trans 'phone' %}</th>
+            <th>{% trans 'appointments' %}</th>
         </tr>
-    {% endfor %}
-    </table>
-    <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'add new staff member' %}</a>
-{% else %}
-    <p>{% trans 'No staff members yet.' %} <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'create one' %}</a></p>
-{% endif %}
+    </thead>
+{% for staffmember in page_obj %}
+    <tr>
+        <td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{staffmember.id}}</a></td>
+        <td><a href="{% url 'rooms:staff-detail' staffmember.id %}">{{ staffmember.name }}</a></td>
+        <td>{{ staffmember.email }}</td>
+        <td>{{ staffmember.phone }}</td>
+        <td>{{ staffmember.appointment__count }} 
+            <a class="ui labeled icon button"  target="_blank" href="{% url 'rooms:staff-print' staffmember.id %}"><i class="print icon"></i>{% trans 'print' %}</a>
+        </td>
+    </tr>
+{% empty %}
+    <tr><td colspan="5">
+        {% trans 'No staff members yet.' %} <a href="{% url 'rooms:staff-new' %}" class="ui labeled icon button primary"><i class="plus icon"></i>{% trans 'create one' %}</a>
+    </td></tr>
+{% endfor %}
+</table>
+<div class="ui pagination menu">
+    {% if page_obj.has_previous %}
+        {% if page_obj.previous_page_number > 1 %}
+        <a href="?page=1" class="item">1</a>
+        <a class="item disabled">&hellip;</a>
+        {% endif %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="item">{{ page_obj.previous_page_number }}</a>
+    {% endif %}
+    <a class="item active">{{ page_obj.number }}</a>
+    {% if page_obj.number < page_obj.paginator.num_pages %}
+
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="item">{{ page_obj.next_page_number }}</a>
+        {% if page_obj.paginator.num_pages != page_obj.next_page_number %}
+        <a class="item disabled">&hellip;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="item">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+</div>
 {% endblock %}

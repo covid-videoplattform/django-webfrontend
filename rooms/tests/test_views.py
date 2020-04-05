@@ -8,7 +8,7 @@ from django.urls import reverse
 
 
 from .. import views
-from ..factories import UserFactory
+from ..factories import AppointmentFactory, StaffMemberFactory, UserFactory
 
 
 class LoginTests(TestCase):
@@ -47,6 +47,14 @@ class StaffIndexTests(TestCase):
             response,
             '<h1 class="ui header">Liste der Mitarbeiter:innen</h1>')
 
+    def test_view_contains_pagination(self):
+        staff = StaffMemberFactory.create_batch(21)
+        for m in staff:
+            m.save()
+        response = self.client.get('/staff/')
+        self.assertContains(response, '<div class="ui pagination menu">')
+        self.assertContains(response, 'class="item">2')
+
 
 class AppointmentIndexTests(TestCase):
     def setUp(self):
@@ -70,3 +78,11 @@ class AppointmentIndexTests(TestCase):
     def test_view_contains_correct_html(self):
         response = self.client.get('/appointments/')
         self.assertContains(response, '<h1 class="ui header">Terminliste</h1>')
+
+    def test_view_contains_pagination(self):
+        appointments = AppointmentFactory.create_batch(21)
+        for a in appointments:
+            a.save()
+        response = self.client.get('/appointments/')
+        self.assertContains(response, '<div class="ui pagination menu">')
+        self.assertContains(response, 'class="item">2')
